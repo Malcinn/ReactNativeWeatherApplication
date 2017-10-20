@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View, Text, TextInput, Button} from 'react-native'
+import {View, Text, TextInput, Button, Alert} from 'react-native'
 import {styles} from './styles.js'
 
 /*
@@ -26,24 +26,28 @@ export class SearchForm extends Component {
     render() {
         return (
             <View style={styles.inputData}>
-                <Text style={styles.textStyle}>City name</Text>
-                <TextInput style={styles.textStyle}
-                    onChangeText={(text)=>{
-                        this.setState(previousState => {
-                            return {'cityName': text};
-                        })
-                    }} />
+                <Text style={styles.header}>City name</Text>
+                <TextInput style={styles.textInput}
+                    onChangeText={(text) => {
+                        this.textInputOnChangeText(text);
+                    }}
+                    onSubmitEditing={() => {
+                        this.textInputOnSubmitEditing();
+                    }}/>
                 <Button title='Get Weather'
                     onPress={()=>{this.onPressGetWeatherButton()}}/>
             </View>
         );
     }
 
-    onChangeText(text, stateName) {
-        console.log(stateName);
+    textInputOnChangeText(text) {
         this.setState(previousState => {
-            return {stateName : text};
-        })
+            return {'cityName': text};
+        });
+    }
+
+    textInputOnSubmitEditing() {
+        this.onPressGetWeatherButton();
     }
 
     onPressGetWeatherButton() {

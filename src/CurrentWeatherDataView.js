@@ -26,19 +26,19 @@ export class CurrentWeatherDataView extends Component {
         if (this.state.currentWeather != null) {
             if (this.state.currentWeather.error != null) {
                 return(
-                    <View>
-                        <Text>Current weather:</Text>
-                        <Text>error: {this.state.currentWeather.error.message}</Text>
+                    <View style={styles.mainView}>
+                        <Text style={styles.header}>Current weather:</Text>
+                        <Text style={styles.error}>error: {this.state.currentWeather.error.message}</Text>
                     </View>
                 );
             } else if (this.state.currentWeather.location != null && this.state.currentWeather.current != null) {
                 return(
-                    <View>
-                        <Text>Current weather:</Text>
-                        <Text>location.name: {this.props.currentWeather.location.name}</Text>
-                        <Text>location.country: {this.props.currentWeather.location.country}</Text>
-                        <Text>current.temp_c: {this.props.currentWeather.current.temp_c}</Text>
-                        <Text>current.condition.text: {this.props.currentWeather.current.condition.text}</Text>
+                    <View style={styles.mainView}>
+                        <Text style={styles.header}>Current weather:</Text>
+                        <Text style={styles.text}>location:  {this.props.currentWeather.location.name}</Text>
+                        <Text style={styles.text}>country:  {this.props.currentWeather.location.country}</Text>
+                        <Text style={styles.text}>temp_c:  {this.props.currentWeather.current.temp_c}</Text>
+                        <Text style={styles.text}>condition:  {this.props.currentWeather.current.condition.text}</Text>
                         <Image source={{uri : 'https:'+this.props.currentWeather.current.condition.icon}}
                             style={{width: 100, height: 100}} />
                     </View>
@@ -46,8 +46,8 @@ export class CurrentWeatherDataView extends Component {
             }
         } else {
             return (
-                <View>
-                    <Text>Current weather:</Text>
+                <View style={styles.mainView}>
+                    <Text style={styles.header}>Current weather:</Text>
                     <Text>no data</Text>
                 </View>
             );
